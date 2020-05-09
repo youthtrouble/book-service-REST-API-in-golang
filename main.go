@@ -44,12 +44,12 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal(reqBody, &newBook)
 
-	// Add the newly created event to the array of events
+	// Add the newly created book to the array of books
 	books = append(books, newBook)
 
 	// Return the 201 created status code
 	w.WriteHeader(http.StatusCreated)
-	// Return the newly created event
+	// Return the newly created book
 	json.NewEncoder(w).Encode(newBook)
 }
 
@@ -57,7 +57,7 @@ func getOneBook(w http.ResponseWriter, r *http.Request) {
 	// Get the ID from the url
 	bookID := mux.Vars(r)["id"]
 
-	// Get the details from an existing event
+	// Get the details from an existing book
 	// Use the blank identifier to avoid creating a value that will not be used
 	for _, singleBook := range books {
 		if singleBook.ID == bookID {
@@ -96,7 +96,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 	// Get the ID from the url
 	bookID := mux.Vars(r)["id"]
 
-	// Get the details from an existing event
+	// Get the details from an existing book
 	// Use the blank identifier to avoid creating a value that will not be used
 	for i, singleBook := range books {
 		if singleBook.ID == bookID {
