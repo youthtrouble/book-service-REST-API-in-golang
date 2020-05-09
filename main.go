@@ -23,6 +23,7 @@ type allBooks []book
 
 var books = allBooks{
 	{
+		ID:			"1"
 		Name:          "A man of the people",
 		Author:       "Chinua Achebe",
 		PublishedAt: time.Now().Local().String(),
@@ -76,7 +77,7 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 	// Convert r.Body into a readable formart
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		fmt.Fprintf(w, "kindle enter book data for update")
+		fmt.Fprintf(w, "kindly enter book data for update")
 	}
 
 	json.Unmarshal(reqBody, &updatedBook)
@@ -100,7 +101,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 	for i, singleBook := range books {
 		if singleBook.ID == bookID {
 			books = append(books[:i], books[i+1:]...)
-			fmt.Fprintf(w, "The event with ID %v has been deleted successfully", bookID)
+			fmt.Fprintf(w, "The book with ID %v has been deleted successfully", bookID)
 		}
 	}
 }
