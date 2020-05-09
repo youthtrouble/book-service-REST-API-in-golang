@@ -23,7 +23,7 @@ type allBooks []book
 
 var books = allBooks{
 	{
-		ID:			"1"
+		ID:				"1",
 		Name:          "A man of the people",
 		Author:       "Chinua Achebe",
 		PublishedAt: time.Now().Local().String(),
