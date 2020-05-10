@@ -105,14 +105,19 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
-
+func logger(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Printf("request received %v\n", r.URL.Path)
+		next(w, r)
+	}
+}
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
-	router.HandleFunc("/api/v1/book", createBook).Methods("POST")
-	router.HandleFunc("/api/v1/books", getAllBooks).Methods("GET")
-	router.HandleFunc("/api/v1/books/{id}", getOneBook).Methods("GET")
-	router.HandleFunc("/api/v1/books/{id}", updateBook).Methods("PATCH")
-	router.HandleFunc("/api/v1/books/{id}", deleteBook).Methods("DELETE")
+	router.HandleFunc("/api/v1/book", logger(createBook)).Methods("POST")
+	router.HandleFunc("/api/v1/books", logger(getAllBooks)).Methods("GET")
+	router.HandleFunc("/api/v1/books/{id}", logger(getOneBook)).Methods("GET")
+	router.HandleFunc("/api/v1/books/{id}", logger(updateBook)).Methods("PATCH")
+	router.HandleFunc("/api/v1/books/{id}", logger(deleteBook)).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
