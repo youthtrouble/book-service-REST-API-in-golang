@@ -86,6 +86,7 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 		if singleBook.ID == bookID {
 			singleBook.Author = updatedBook.Author
 			singleBook.Name = updatedBook.Name
+			singleBook.PublishedAt = time.Now().Local().String()
 			books[i] = singleBook
 			json.NewEncoder(w).Encode(singleBook)
 		}
