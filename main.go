@@ -13,10 +13,10 @@ import (
 
 //Book mod
 type book struct {
-	ID 			string `json:"ID"`	
-	Name          string `json:"name"`
-	Author       string `json:"author"`
-	PublishedAt string `json:"published_at"`
+	ID 				string `json:"ID"`	
+	Name          	string `json:"name"`
+	Author       	string `json:"author"`
+	PublishedAt 	string `json:"published_at"`
 }
 
 type allBooks []book
@@ -24,9 +24,9 @@ type allBooks []book
 var books = allBooks{
 	{
 		ID:				"1",
-		Name:          "A man of the people",
-		Author:       "Chinua Achebe",
-		PublishedAt: time.Now().Local().String(),
+		Name:          	"A man of the people",
+		Author:       	"Chinua Achebe",
+		PublishedAt: 	time.Now().Local().String(),
 	},
 }
 
