@@ -108,7 +108,7 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 }
 func logger(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Printf("request received %v\n", r.URL.Path)
+		fmt.Printf("request %v received at %s\n", r.URL.Path, time.Now().Local().String())
 		next(w, r)
 	}
 }
